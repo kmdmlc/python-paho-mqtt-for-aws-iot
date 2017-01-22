@@ -34,7 +34,9 @@ mqttc.on_connect = on_connect
 mqttc.on_message = on_message
 #mqttc.on_log = on_log
 
-awshost = "data.iot.eu-west-1.amazonaws.com"
+# Setup variables to support mutual authentication with AWS
+# awshost = "data.iot.eu-west-1.amazonaws.com"
+awshost = "a1iw5rjab08b5v.iot.us-east-1.amazonaws.com"
 awsport = 8883
 clientId = "myThingName"
 thingName = "myThingName"
@@ -42,6 +44,7 @@ caPath = "aws-iot-rootCA.crt"
 certPath = "cert.pem"
 keyPath = "privkey.pem"
 
+# provide root ca, private key, iot device certificate to setup ssl with AWS IoT service
 mqttc.tls_set(caPath, certfile=certPath, keyfile=keyPath, cert_reqs=ssl.CERT_REQUIRED, tls_version=ssl.PROTOCOL_TLSv1_2, ciphers=None)
 
 mqttc.connect(awshost, awsport, keepalive=60)
@@ -49,7 +52,7 @@ mqttc.connect(awshost, awsport, keepalive=60)
 mqttc.loop_start()
 
 while 1==1:
-    sleep(0.5)
+    sleep(5.0)
     if connflag == True:
         tempreading = uniform(20.0,25.0)
         mqttc.publish("temperature", tempreading, qos=1)
