@@ -31,7 +31,8 @@ mqttc.on_connect = on_connect
 mqttc.on_message = on_message
 #mqttc.on_log = on_log
 
-awshost = "data.iot.eu-west-1.amazonaws.com"
+# awshost = "data.iot.eu-west-1.amazonaws.com"
+awshost = "a1iw5rjab08b5v.iot.us-east-1.amazonaws.com"
 awsport = 8883
 clientId = "myThingName"
 thingName = "myThingName"
